@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ڕاهێنانی بکەر</title>
+    <title>ڕاهێنانی ڕێزمانی کوردی</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>با بکەر بدۆزینەوە</h1>
+        <div class="exercise-buttons">
+            <button onclick="switchExercise('subject')" class="switch-btn">ڕاهێنانی بکەر</button>
+            <button onclick="switchExercise('verb')" class="switch-btn">ڕاهێنانی کار</button>
+        </div>
+
+        <h1 id="exercise-title">ڕاهێنانی ڕێزمانی کوردی</h1>
+        <p id="exercise-description" class="description"></p>
         
         <div class="quiz-container">
-            <div id="sentence" class="sentence">
-                مەلەوانەکە لە ڕووبارەکە پەڕییوە
-            </div>
+            <div id="sentence" class="sentence"></div>
             
             <button onclick="showAnswer()" class="button">
-                نیشاندانی بکەر
+                نیشاندانی وەڵام
             </button>
             
-            <div id="answer" style="display: none;">
-                <div class="sentence">
-                    <span class="highlight">مەلەوانەکە</span> لە ڕووبارەکە پەڕییوە
-                </div>
-                <div class="explanation">
-                    بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات
-                </div>
-            </div>
+            <div id="answer" style="display: none;"></div>
             
             <button onclick="nextSentence()" class="button next-btn">
                 ڕستەی دواتر
             </button>
+        </div>
+
+        <div class="progress">
+            <span id="current-number"></span>
         </div>
     </div>
     <script src="script.js"></script>
