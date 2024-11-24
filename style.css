@@ -15,8 +15,29 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.quiz-container {
-    margin: 20px 0;
+.exercise-buttons {
+    margin-bottom: 20px;
+}
+
+.switch-btn {
+    background: #34495e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.switch-btn:hover {
+    background: #2c3e50;
+}
+
+.description {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .sentence {
@@ -37,7 +58,6 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
-    transition: background 0.3s;
 }
 
 .button:hover {
@@ -50,18 +70,18 @@ body {
     border-radius: 4px;
 }
 
-.explanation {
-    font-size: 18px;
-    margin: 20px;
-    color: #666;
-}
-
 .next-btn {
     background: #2196F3;
 }
 
 .next-btn:hover {
     background: #1976D2;
+}
+
+.progress {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
 }
 
 @media (max-width: 600px) {
