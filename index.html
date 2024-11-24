@@ -4,121 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ڕاهێنانەکانی ڕێزمانی کوردی</title>
-    <style>
-        /* هەموو ستایلەکانی پێشوو لێرە دابنێ */
-        
-        /* ستایلی نوێ بۆ بەشی نیشاندانی ڕستەکان */
-        .exercise-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            display: none;
-        }
-
-        .sentence {
-            font-size: 24px;
-            margin: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            line-height: 1.6;
-        }
-
-        .highlight {
-            background-color: #c8e6c9;
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .exercise-title {
-            color: #1e3c72;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .exercise-description {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- بەشی سەرەتا -->
-    <div class="header">
-        <h1>ڕاهێنانەکانی ڕێزمانی کوردی</h1>
-    </div>
-    
-    <!-- بەشی کارتەکان -->
-    <div class="container">
-        <div class="card">
-            <div>
-                <div class="card-icon">📚</div>
-                <h2>ڕاهێنانی بکەر</h2>
-                <p>ڕاهێنان لەسەر دۆزینەوەی بکەر لە ڕستەدا. شەش ڕستەی جیاواز بۆ پراکتیزەکردن.</p>
-            </div>
-            <button onclick="startExercise('subject')" class="button">دەستپێکردن</button>
-        </div>
-        
-        <div class="card">
-            <div>
-                <div class="card-icon">✍️</div>
-                <h2>ڕاهێنانی کار</h2>
-                <p>ڕاهێنان لەسەر دۆزینەوەی کار لە ڕستەدا. شەش ڕستەی جیاواز بۆ پراکتیزەکردن.</p>
-            </div>
-            <button onclick="startExercise('verb')" class="button">دەستپێکردن</button>
-        </div>
-        
-        <div class="card homework">
-            <div>
-                <div class="card-icon">📝</div>
-                <h2>ئەرکی ماڵەوە</h2>
-                <p>دە ڕستەی جیاواز بۆ پراکتیزەکردنی بکەر و کار لە ماڵەوە.</p>
-            </div>
-            <button onclick="startExercise('homework')" class="button">دەستپێکردن</button>
-        </div>
-    </div>
-    
-    <!-- بەشی نیشاندانی ڕستەکان -->
-    <div id="exercise-container" class="exercise-container">
-        <h2 id="exercise-title" class="exercise-title"></h2>
-        <p id="exercise-description" class="exercise-description"></p>
-        
-        <div class="quiz-container">
-            <div id="sentence" class="sentence"></div>
+    <div class="main-container">
+        <!-- مەنیو سەرەکی -->
+        <div id="main-menu">
+            <h1>ڕاهێنانەکانی ڕێزمانی کوردی</h1>
             
-            <div class="button-group">
-                <button onclick="showAnswer()" class="button">
-                    نیشاندانی وەڵام
-                </button>
+            <div class="menu-buttons">
+                <div class="menu-item">
+                    <h2>ڕاهێنانی بکەر</h2>
+                    <p>دۆزینەوەی بکەر لە ڕستەدا</p>
+                    <button onclick="startExercise('subject')">دەستپێکردن</button>
+                </div>
+
+                <div class="menu-item">
+                    <h2>ڕاهێنانی کار</h2>
+                    <p>دۆزینەوەی کار لە ڕستەدا</p>
+                    <button onclick="startExercise('verb')">دەستپێکردن</button>
+                </div>
+
+                <div class="menu-item">
+                    <h2>ئەرکی ماڵەوە</h2>
+                    <p>ڕاهێنانی بکەر و کار</p>
+                    <button onclick="startExercise('homework')">دەستپێکردن</button>
+                </div>
             </div>
-            
-            <div id="answer" style="display: none;"></div>
-            
-            <div class="button-group">
-                <button onclick="nextSentence()" class="button">
-                    ڕستەی دواتر
-                </button>
-                <button onclick="goBack()" class="button">
-                    گەڕانەوە
-                </button>
+        </div>
+
+        <!-- بەشی ڕاهێنانەکان -->
+        <div id="exercise-view" style="display: none;">
+            <h2 id="exercise-title"></h2>
+            <div id="sentence-container"></div>
+            <div id="answer-container" style="display: none;"></div>
+            <div class="button-container">
+                <button onclick="showAnswer()">وەڵام</button>
+                <button onclick="nextSentence()">ڕستەی دواتر</button>
+                <button onclick="goBack()">گەڕانەوە</button>
             </div>
         </div>
     </div>
-    
-    <!-- لینکی سکریپتەکە -->
     <script src="script.js"></script>
 </body>
 </html>
