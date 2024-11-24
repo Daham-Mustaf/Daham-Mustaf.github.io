@@ -1,80 +1,104 @@
-const exercises = {
+const exerciseData = {
     subject: {
-        title: "ڕاهێنانی یەکەم - دۆزینەوەی بکەر",
-        description: "لەم ڕستانە بکەر دەربهێنە:",
+        title: "ڕاهێنانی دۆزینەوەی بکەر",
+        description: "لەم ڕستانەدا بکەر دەربهێنە:",
         sentences: [
             {
-                text: "ئافرەتەکە دەسکە گوڵێکی کڕی",
-                subject: "ئافرەتەکە",
+                text: "مەلەوانەکە لە ڕووبارەکە پەڕییەوە",
+                answer: "مەلەوانەکە",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             },
             {
-                text: "پۆلیسەکە دزەکەی گرت",
-                subject: "پۆلیسەکە",
+                text: "ئازاد لە سلێمانی دەژی",
+                answer: "ئازاد",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             },
             {
-                text: "ئاسنگەر داس دروست دەکات",
-                subject: "ئاسنگەر",
+                text: "هاژە بۆ خانەقین دەچێت",
+                answer: "هاژە",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             },
             {
-                text: "تاڤگە وانەکانی خوێند",
-                subject: "تاڤگە",
+                text: "پیرۆت زەوییەکەی کێڵا",
+                answer: "پیرۆت",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             },
             {
-                text: "من ڕێزانم دیت",
-                subject: "من",
+                text: "دانا هاریکاری باوکی دەکات",
+                answer: "دانا",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             },
             {
-                text: "نانەوا هەویر دەشێلێت",
-                subject: "نانەوا",
+                text: "ڕەنجبەر کار دەکات",
+                answer: "ڕەنجبەر",
                 explanation: "بکەر ئەو کەسەیە کە کردارەکە ئەنجام دەدات"
             }
         ]
     },
     verb: {
-        title: "ڕاهێنانی دووەم - دۆزینەوەی کار",
-        description: "لەم ڕستانە کار دەربهێنە:",
+        title: "ڕاهێنانی دۆزینەوەی کار",
+        description: "لەم ڕستانەدا کار دەربهێنە:",
         sentences: [
             {
                 text: "ئافرەتەکە دەسکە گوڵێکی کڕی",
-                verb: "کڕی",
+                answer: "کڕی",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             },
             {
                 text: "پۆلیسەکە دزەکەی گرت",
-                verb: "گرت",
+                answer: "گرت",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             },
             {
                 text: "ئاسنگەر داس دروست دەکات",
-                verb: "دروست دەکات",
+                answer: "دروست دەکات",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             },
             {
                 text: "تاڤگە وانەکانی خوێند",
-                verb: "خوێند",
+                answer: "خوێند",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             },
             {
                 text: "من ڕێزانم دیت",
-                verb: "دیت",
+                answer: "دیت",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             },
             {
                 text: "نانەوا هەویر دەشێلێت",
-                verb: "دەشێلێت",
+                answer: "دەشێلێت",
                 explanation: "کار ئەو وشەیەیە کە کردارەکە دەردەخات"
             }
+        ]
+    },
+    homework: {
+        title: "ئەرکی ماڵەوە",
+        description: "لەم دە ڕستەیەدا بکەر و کار دەربهێنە:",
+        sentences: [
+            "قوتابییەکان بە وردی گوێ لە وانەکە دەگرن",
+            "کتێبخانەکە هەموو ڕۆژێک کراوەیە",
+            "باخەوانەکە دارەکانی ئاو دەدات",
+            "هونەرمەندەکە تابلۆیەکی جوانی کێشا",
+            "خوشکەکەم بە سەرکەوتوویی دەرچوو",
+            "دایکم چیرۆکێکی خۆشی بۆ گێڕامەوە",
+            "پزیشکەکە نەخۆشەکەی چارەسەر کرد",
+            "کچەکە بە خۆشحاڵییەوە پێدەکەنی",
+            "مامۆستاکە پرسیارەکانی وەڵام دایەوە",
+            "کوڕەکە یارمەتی هاوڕێکەی دەدات"
         ]
     }
 };
 
-let currentExercise = 'subject'; // یان 'verb'
+let currentExercise = null;
 let currentIndex = 0;
+
+function startExercise(type) {
+    currentExercise = type;
+    currentIndex = 0;
+    document.querySelector('.container').style.display = 'none';
+    document.getElementById('exercise-container').style.display = 'block';
+    updateUI();
+}
 
 function showAnswer() {
     const answer = document.getElementById('answer');
@@ -82,46 +106,46 @@ function showAnswer() {
 }
 
 function nextSentence() {
-    currentIndex = (currentIndex + 1) % exercises[currentExercise].sentences.length;
+    if (currentExercise === 'homework') {
+        currentIndex = (currentIndex + 1) % exerciseData[currentExercise].sentences.length;
+    } else {
+        currentIndex = (currentIndex + 1) % exerciseData[currentExercise].sentences.length;
+    }
     updateUI();
 }
 
-function switchExercise(type) {
-    currentExercise = type;
+function goBack() {
+    document.querySelector('.container').style.display = 'grid';
+    document.getElementById('exercise-container').style.display = 'none';
+    currentExercise = null;
     currentIndex = 0;
-    updateUI();
 }
 
 function updateUI() {
-    const exercise = exercises[currentExercise];
-    const sentence = exercise.sentences[currentIndex];
+    const exercise = exerciseData[currentExercise];
     
-    // Update title and description
     document.getElementById('exercise-title').textContent = exercise.title;
     document.getElementById('exercise-description').textContent = exercise.description;
     
-    // Update sentence
-    document.getElementById('sentence').textContent = sentence.text;
+    if (currentExercise === 'homework') {
+        document.getElementById('sentence').textContent = exercise.sentences[currentIndex];
+        document.getElementById('answer').innerHTML = `
+            <div class="sentence">
+                بکەر و کار بدۆزەرەوە و لە دەفتەرەکەت بینووسە
+            </div>
+        `;
+    } else {
+        const sentence = exercise.sentences[currentIndex];
+        document.getElementById('sentence').textContent = sentence.text;
+        document.getElementById('answer').innerHTML = `
+            <div class="sentence">
+                <span class="highlight">${sentence.answer}</span>
+            </div>
+            <div class="explanation">
+                ${sentence.explanation}
+            </div>
+        `;
+    }
     
-    // Update answer
-    const highlightedWord = currentExercise === 'subject' ? sentence.subject : sentence.verb;
-    const answerHTML = `
-        <div class="sentence">
-            ${highlightAnswer(sentence.text, highlightedWord)}
-        </div>
-        <div class="explanation">
-            ${sentence.explanation}
-        </div>
-    `;
-    
-    const answer = document.getElementById('answer');
-    answer.innerHTML = answerHTML;
-    answer.style.display = 'none';
+    document.getElementById('answer').style.display = 'none';
 }
-
-function highlightAnswer(text, word) {
-    return text.replace(word, `<span class="highlight">${word}</span>`);
-}
-
-// Initialize UI when page loads
-window.onload = updateUI;

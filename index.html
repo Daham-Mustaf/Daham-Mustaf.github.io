@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ڕاهێنانی ڕێزمانی کوردی</title>
+    <title>ڕاهێنانەکانی ڕێزمانی کوردی</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="header">
+        <h1>ڕاهێنانەکانی ڕێزمانی کوردی</h1>
+    </div>
+    
     <div class="container">
-        <div class="exercise-buttons">
-            <button onclick="switchExercise('subject')" class="switch-btn">ڕاهێنانی بکەر</button>
-            <button onclick="switchExercise('verb')" class="switch-btn">ڕاهێنانی کار</button>
+        <div class="card">
+            <h2>ڕاهێنانی بکەر</h2>
+            <p>ڕاهێنان لەسەر دۆزینەوەی بکەر لە ڕستەدا</p>
+            <button onclick="startExercise('subject')" class="btn">دەستپێکردن</button>
         </div>
+        
+        <div class="card">
+            <h2>ڕاهێنانی کار</h2>
+            <p>ڕاهێنان لەسەر دۆزینەوەی کار لە ڕستەدا</p>
+            <button onclick="startExercise('verb')" class="btn">دەستپێکردن</button>
+        </div>
+        
+        <div class="card">
+            <h2>ئەرکی ماڵەوە</h2>
+            <p>دە ڕستە بۆ پراکتیزەکردنی بکەر و کار</p>
+            <button onclick="startExercise('homework')" class="btn homework-btn">دەستپێکردن</button>
+        </div>
+    </div>
 
-        <h1 id="exercise-title">ڕاهێنانی ڕێزمانی کوردی</h1>
+    <div id="exercise-container" class="exercise-container" style="display: none;">
+        <h2 id="exercise-title"></h2>
         <p id="exercise-description" class="description"></p>
         
         <div class="quiz-container">
@@ -25,15 +44,17 @@
             
             <div id="answer" style="display: none;"></div>
             
-            <button onclick="nextSentence()" class="button next-btn">
-                ڕستەی دواتر
-            </button>
-        </div>
-
-        <div class="progress">
-            <span id="current-number"></span>
+            <div class="button-group">
+                <button onclick="nextSentence()" class="button next-btn">
+                    ڕستەی دواتر
+                </button>
+                <button onclick="goBack()" class="button back-btn">
+                    گەڕانەوە
+                </button>
+            </div>
         </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
