@@ -5,134 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ڕاهێنانەکانی ڕێزمانی کوردی</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
+        /* هەموو ستایلەکانی پێشوو لێرە دابنێ */
         
-        body {
-            font-family: 'Noto Sans Arabic', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            text-align: center;
-        }
-        
-        .header {
-            background: linear-gradient(45deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+        /* ستایلی نوێ بۆ بەشی نیشاندانی ڕستەکان */
+        .exercise-container {
+            max-width: 800px;
+            margin: 2rem auto;
             padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .card {
             background: white;
             border-radius: 20px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .sentence {
+            font-size: 24px;
+            margin: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background-color: #c8e6c9;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .button-group {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 300px;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .card h2 {
+
+        .exercise-title {
             color: #1e3c72;
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 1rem;
+            text-align: center;
         }
-        
-        .card h2:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 4px;
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            border-radius: 2px;
-        }
-        
-        .card p {
+
+        .exercise-description {
             color: #666;
             font-size: 1.1rem;
-            line-height: 1.6;
             margin-bottom: 2rem;
-        }
-        
-        .button {
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
-        }
-        
-        .homework .button {
-            background: linear-gradient(45deg, #2ecc71, #27ae60);
-        }
-        
-        .card-icon {
-            font-size: 3rem;
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .card {
-                min-height: 250px;
-            }
-            
-            .card h2 {
-                font-size: 1.5rem;
-            }
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <!-- بەشی سەرەتا -->
     <div class="header">
         <h1>ڕاهێنانەکانی ڕێزمانی کوردی</h1>
     </div>
     
+    <!-- بەشی کارتەکان -->
     <div class="container">
         <div class="card">
             <div>
@@ -156,12 +85,40 @@
             <div>
                 <div class="card-icon">📝</div>
                 <h2>ئەرکی ماڵەوە</h2>
-                <p>دە ڕستەی جیاواز بۆ پراکتیزەکردنی بکەر و کار لە ماڵەوە. تێکەڵ لە ڕستەی پرسیار و سەرسوڕمان.</p>
+                <p>دە ڕستەی جیاواز بۆ پراکتیزەکردنی بکەر و کار لە ماڵەوە.</p>
             </div>
             <button onclick="startExercise('homework')" class="button">دەستپێکردن</button>
         </div>
     </div>
     
+    <!-- بەشی نیشاندانی ڕستەکان -->
+    <div id="exercise-container" class="exercise-container">
+        <h2 id="exercise-title" class="exercise-title"></h2>
+        <p id="exercise-description" class="exercise-description"></p>
+        
+        <div class="quiz-container">
+            <div id="sentence" class="sentence"></div>
+            
+            <div class="button-group">
+                <button onclick="showAnswer()" class="button">
+                    نیشاندانی وەڵام
+                </button>
+            </div>
+            
+            <div id="answer" style="display: none;"></div>
+            
+            <div class="button-group">
+                <button onclick="nextSentence()" class="button">
+                    ڕستەی دواتر
+                </button>
+                <button onclick="goBack()" class="button">
+                    گەڕانەوە
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- لینکی سکریپتەکە -->
     <script src="script.js"></script>
 </body>
 </html>
