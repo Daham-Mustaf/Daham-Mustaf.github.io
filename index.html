@@ -4,15 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ڕاهێنانەکانی ڕێزمانی کوردی</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1a237e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .menu-item h2 {
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #283593;
+        }
+
+        #exerciseSection {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .sentence {
+            font-size: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .answer {
+            margin: 20px 0;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        .highlight {
+            background-color: #c8e6c9;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- مەنیو سەرەکی -->
-        <div id="main-menu">
+    <div class="container">
+        <div id="menuSection">
             <h1>ڕاهێنانەکانی ڕێزمانی کوردی</h1>
             
-            <div class="menu-buttons">
+            <div class="menu-grid">
                 <div class="menu-item">
                     <h2>ڕاهێنانی بکەر</h2>
                     <p>دۆزینەوەی بکەر لە ڕستەدا</p>
@@ -33,18 +126,137 @@
             </div>
         </div>
 
-        <!-- بەشی ڕاهێنانەکان -->
-        <div id="exercise-view" style="display: none;">
-            <h2 id="exercise-title"></h2>
-            <div id="sentence-container"></div>
-            <div id="answer-container" style="display: none;"></div>
+        <div id="exerciseSection">
+            <h2 id="exerciseTitle"></h2>
+            <div id="sentenceBox" class="sentence"></div>
+            <div id="answerBox" class="answer"></div>
             <div class="button-container">
                 <button onclick="showAnswer()">وەڵام</button>
                 <button onclick="nextSentence()">ڕستەی دواتر</button>
-                <button onclick="goBack()">گەڕانەوە</button>
+                <button onclick="goToMenu()">گەڕانەوە</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const exercises = {
+            subject: {
+                title: "ڕاهێنانی دۆزینەوەی بکەر",
+                items: [
+                    {
+                        text: "١- مەلەوانەکە لە ڕووبارەکە پەڕییەوە.",
+                        answer: "مەلەوانەکە"
+                    },
+                    {
+                        text: "٢- ئازاد لە سلێمانی دەژی.",
+                        answer: "ئازاد"
+                    },
+                    {
+                        text: "٣- هاژە بۆ خانەقین دەچێت.",
+                        answer: "هاژە"
+                    },
+                    {
+                        text: "٤- پیرۆت زەوییەکەی کێڵا.",
+                        answer: "پیرۆت"
+                    },
+                    {
+                        text: "٥- دانا هاریکاری باوکی دەکات.",
+                        answer: "دانا"
+                    },
+                    {
+                        text: "٦- ڕەنجبەر کار دەکات.",
+                        answer: "ڕەنجبەر"
+                    }
+                ]
+            },
+            verb: {
+                title: "ڕاهێنانی دۆزینەوەی کار",
+                items: [
+                    {
+                        text: "١- ئافرەتەکە دەسکە گوڵێکی کڕی.",
+                        answer: "کڕی"
+                    },
+                    {
+                        text: "٢- پۆلیسەکە دزەکەی گرت.",
+                        answer: "گرت"
+                    },
+                    {
+                        text: "٣- ئاسنگەر داس دروست دەکات.",
+                        answer: "دروست دەکات"
+                    },
+                    {
+                        text: "٤- تاڤگە وانەکانی خوێند.",
+                        answer: "خوێند"
+                    },
+                    {
+                        text: "٥- من ڕێزانم دیت.",
+                        answer: "دیت"
+                    },
+                    {
+                        text: "٦- نانەوا هەویر دەشێلێت.",
+                        answer: "دەشێلێت"
+                    }
+                ]
+            },
+            homework: {
+                title: "ئەرکی ماڵەوە - دۆزینەوەی بکەر و کار",
+                items: [
+                    "١- قوتابییەکان بە وردی گوێ لە وانەکە دەگرن.",
+                    "٢- کێ ئەم وێنە جوانەی کێشاوە؟",
+                    "٣- باخەوانەکە دارەکانی ئاو دەدات.",
+                    "٤- چۆن ئەم کارە جوانەت ئەنجام دا!",
+                    "٥- خوشکەکەم بە سەرکەوتوویی دەرچوو.",
+                    "٦- بۆچی درەنگ هاتی بۆ پۆل؟",
+                    "٧- پزیشکەکە نەخۆشەکەی چارەسەر کرد.",
+                    "٨- چەند جوان دەخوێنیت!",
+                    "٩- مامۆستاکە پرسیارەکانی وەڵام دایەوە.",
+                    "١٠- کەی دەگەڕێیتەوە بۆ ماڵەوە؟"
+                ]
+            }
+        };
+
+        let currentExercise = '';
+        let currentIndex = 0;
+
+        function startExercise(type) {
+            currentExercise = type;
+            currentIndex = 0;
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('exerciseSection').style.display = 'block';
+            document.getElementById('answerBox').style.display = 'none';
+            updateExercise();
+        }
+
+        function updateExercise() {
+            const exercise = exercises[currentExercise];
+            document.getElementById('exerciseTitle').textContent = exercise.title;
+            
+            if (currentExercise === 'homework') {
+                document.getElementById('sentenceBox').textContent = exercise.items[currentIndex];
+                document.getElementById('answerBox').innerHTML = 'بکەر و کار بدۆزەرەوە و لە دەفتەرەکەت بینووسە';
+            } else {
+                const item = exercise.items[currentIndex];
+                document.getElementById('sentenceBox').textContent = item.text;
+                document.getElementById('answerBox').innerHTML = `
+                    وەڵام: <span class="highlight">${item.answer}</span>
+                `;
+            }
+        }
+
+        function showAnswer() {
+            document.getElementById('answerBox').style.display = 'block';
+        }
+
+        function nextSentence() {
+            currentIndex = (currentIndex + 1) % exercises[currentExercise].items.length;
+            document.getElementById('answerBox').style.display = 'none';
+            updateExercise();
+        }
+
+        function goToMenu() {
+            document.getElementById('menuSection').style.display = 'block';
+            document.getElementById('exerciseSection').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
